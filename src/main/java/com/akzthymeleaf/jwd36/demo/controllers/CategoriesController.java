@@ -11,34 +11,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
+
 
 @Controller
-@RequestMapping(value = "/Category")
+@RequestMapping(value = "/category")
 public class CategoriesController {
 
     @Autowired
-    CategoriesDao categoriesDao;
+    private CategoriesDao categoriesDao;
 
     @GetMapping(value = "/create")
-    public String createCategoriesGet(Model model){
-        List<Categories> categories=categoriesDao.findAll();
-        for(int i=0;i<categories.size();i++){
+    public String createCategoriesGet(Model model) {
+        List<Categories> categories = categoriesDao.findAll();
+        for (int i = 0; i < categories.size(); i++) {
             System.out.println(categories.get(i).getCatName());
 
         }
-        model.addAttribute("title","Category Create");
+        model.addAttribute("title", "Category Create");
         System.out.println("Get");
-        return "Category/create";
+        return "category/create";
     }
 
     @PostMapping(value = "/create")
-    public String createCategoriesPost(Model model, @RequestParam String category){
-        model.addAttribute("title","Category Create");
+    public String createCategoriesPost(Model model, @RequestParam String category) {
+        model.addAttribute("title", "Category Create");
         System.out.println("Post");
-        Categories categories=new Categories();
+        Categories categories = new Categories();
         categories.setCatName(category);
         categoriesDao.save(categories);
-        return "Category/create";
+        return "category/create";
     }
 
+    @GetMapping(value = "/view")
+    public String viewALlGet(Model model) {
+        List<Categories> categories = categoriesDao.findAll();
+        model.addAttribute("categories",categories);
+        return "category/viewAll";
+        }
+
+
+    @GetMapping(value="/show")
+    public String show(@RequestParam("id") Integer id, Model model){
+        Optional<Categories> categories= categoriesDao.findById(id);
+        model.addAttribute("categories",categories);
+        return "category/show";
+    }
 }

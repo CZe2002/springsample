@@ -30,4 +30,10 @@ public class PageController {
         model.addAttribute("title","Login Page");
         return "login";
     }
+
+    @RequestMapping(value = "/category/search", method = RequestMethod.GET)
+    public String search(Model model){
+        model.addAttribute("title","Search Page");
+        return "category/search";
+    }
 }

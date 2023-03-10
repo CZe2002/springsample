@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="master :: header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Search With Your ID</h1>
+<div class="container">
+
+    <form th:action="@{/category/show}" method="get">
+        <div class="form-group">
+            <label for="id">Enter Id for Search</label>
+            <input type="text" class="form-control" id="id" name="id">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary float-right">Search</button>
+    </form>
+</div>
+<div th:replace="master :: footer"></div>
+</body>
+</html>
