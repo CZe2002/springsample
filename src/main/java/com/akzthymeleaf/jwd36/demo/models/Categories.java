@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
+
 public class Categories {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

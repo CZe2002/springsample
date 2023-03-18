@@ -28,7 +28,7 @@ public class PageController {
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String loginPost(Model model){
         model.addAttribute("title","Login Page");
-        return "login";
+        return "index";
     }
 
     @RequestMapping(value = "/category/search", method = RequestMethod.GET)
